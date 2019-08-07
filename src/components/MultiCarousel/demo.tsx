@@ -3,6 +3,9 @@ import MultiCarousel from './MultiCarousel'
 import StatCard from '../StatCard'
 import { generateDataset } from '../StatCard/demo'
 import Typography from '@material-ui/core/Typography'
+import gif from './demo.gif'
+
+export { gif }
 
 /** BEGIN DEMO */
 const datasets = [1, 2, 3, 4, 5, 6].map(() => generateDataset(12))
@@ -11,7 +14,7 @@ const statCards = datasets.map((data, i) => (
 ))
 const singleStatCard = [statCards[0]]
 
-export default () => (
+export const Demo = () => (
   <>
     <Typography variant="h5" gutterBottom>
       Item Width

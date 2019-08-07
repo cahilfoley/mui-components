@@ -1,25 +1,41 @@
 import React, { useState } from 'react'
 import Box from '@material-ui/core/Box'
 import RadioCollapse from './RadioCollapse'
+import gif from './demo.gif'
+
+export { gif }
 
 /** BEGIN DEMO */
-const options = {
-  foo: 'Foo',
-  bar: 'Bar',
-  baz: 'Baz',
+const options1 = {
+  A: 'Option A',
+  B: 'Option B',
+  C: 'Option C',
 }
 
-export default () => {
-  const [value, setValue] = useState('')
+const options2 = {
+  1: 'Option 1',
+  2: 'Option 2',
+  3: 'Option 3',
+}
+
+export const Demo = () => {
+  const [value1, setValue1] = useState('')
+  const [value2, setValue2] = useState('')
 
   return (
-    <Box maxWidth={250}>
-      <pre>Value: {value}</pre>
+    <Box maxWidth={400} p={4}>
       <RadioCollapse
-        value={value}
-        onChange={setValue}
-        options={options}
-        label="Best Variable"
+        value={value1}
+        onChange={setValue1}
+        options={options1}
+        label="The First Value"
+        showNoSelection
+      />
+      <RadioCollapse
+        value={value2}
+        onChange={setValue2}
+        options={options2}
+        label="The Second Value"
         showNoSelection
       />
     </Box>

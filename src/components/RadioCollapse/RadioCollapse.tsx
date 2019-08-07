@@ -14,7 +14,7 @@ import ExpandMore from '@material-ui/icons/ExpandMore'
 const useStyles = makeStyles(
   theme => ({
     formControl: {
-      margin: theme.spacing(3),
+      margin: theme.spacing(1),
     },
     formLabel: {
       lineHeight: 1,

@@ -1,12 +1,13 @@
 import React from 'react'
-import Box from '@material-ui/core/Box'
-import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
 import InfoIcon from 'mdi-material-ui/InformationVariant'
 import RevealCard from './RevealCard'
+import gif from './demo.gif'
+
+export { gif }
 
 /** BEGIN DEMO */
-export default () => {
+export const Demo = () => {
   return (
     <>
       <RevealCard

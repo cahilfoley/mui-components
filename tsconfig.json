@@ -8,7 +8,6 @@
             "esnext"
         ],
         "allowSyntheticDefaultImports": true,
-        "jsx": "react",
-        "downlevelIteration": true,
+        "jsx": "react"
     }
 }

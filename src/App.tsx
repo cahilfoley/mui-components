@@ -1,24 +1,14 @@
 import * as React from 'react'
-import { Link as RouterLink, Route, Switch } from 'react-router-dom'
-import Typography from '@material-ui/core/Typography'
-import Link from '@material-ui/core/Link'
+import { Route, Switch } from 'react-router-dom'
+
+import ComponentList from './containers/ComponentList'
 import Page from './containers/Page'
 import routes from './routes'
 // import Code from './components/Code'
 
 const Home: React.FC = () => (
-  <Page title="Home" noBack>
-    <ul>
-      {routes.map(route => (
-        <li key={route.path}>
-          <Typography variant="body1">
-            <Link component={RouterLink} to={route.path} key={route.path}>
-              {route.title}
-            </Link>
-          </Typography>
-        </li>
-      ))}
-    </ul>
+  <Page title="Material UI Component Ideas" noBack>
+    <ComponentList />
   </Page>
 )
 

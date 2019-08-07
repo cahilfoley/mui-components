@@ -4,6 +4,7 @@ import Typography from '@material-ui/core/Typography'
 import TrackerTooltip from './'
 import StatCard from '../StatCard'
 import { generateDataset } from '../StatCard/demo'
+import gif from './demo.gif'
 
 /** BEGIN DEMO */
 const useStyles = makeStyles(theme => ({
@@ -23,9 +24,11 @@ const useStyles = makeStyles(theme => ({
 const dataset = generateDataset(12, { varianceLow: 0, varianceHigh: 50 })
 
 // Can override the default tooltip container by providing your own
-const PlainWrapper: React.FC = ({ children }) => <div style={{ minWidth: 300 }}>{children}</div>
+const PlainWrapper: React.FC = ({ children }) => (
+  <div style={{ minWidth: 300 }}>{children}</div>
+)
 
-export default () => {
+export const Demo = () => {
   const classes = useStyles()
 
   return (
@@ -39,7 +42,12 @@ export default () => {
       <TrackerTooltip
         component={PlainWrapper}
         content={
-          <StatCard data={dataset} title="Tooltip Awesomeness" units="%" footnote="Can't even" />
+          <StatCard
+            data={dataset}
+            title="Tooltip Awesomeness"
+            units="%"
+            footnote="Can't even"
+          />
         }
       >
         <Typography variant="h5" className={classes.hoverZone}>
@@ -65,3 +73,5 @@ export default () => {
   )
 }
 /** END DEMO */
+
+export { gif }
