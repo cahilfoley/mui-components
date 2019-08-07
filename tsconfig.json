@@ -1,0 +1,14 @@
+{
+    "include": [
+        "./src/**/*"
+    ],
+    "compilerOptions": {
+        "lib": [
+            "dom",
+            "esnext"
+        ],
+        "allowSyntheticDefaultImports": true,
+        "jsx": "react",
+        "downlevelIteration": true,
+    }
+}
