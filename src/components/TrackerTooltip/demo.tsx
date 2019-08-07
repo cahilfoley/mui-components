@@ -29,7 +29,7 @@ const PlainWrapper: React.FC = ({ children }) => (
 )
 
 export const Demo = () => {
-  const classes = useStyles()
+  const classes = useStyles({})
 
   return (
     <>

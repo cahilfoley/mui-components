@@ -28,7 +28,7 @@ type TrendIconProps = {
 }
 
 const TrendIcon: React.FC<TrendIconProps> = props => {
-  const classes = useStyles()
+  const classes = useStyles({})
 
   switch (props.trend) {
     case Trend.DOWN:

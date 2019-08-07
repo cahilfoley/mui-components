@@ -11,7 +11,7 @@ import { Trend } from '../TrendIcon'
 export const useTrend = (points: LineSerieData['data']): [Trend, number] => {
   const [trend, movement] = useMemo(() => {
     const len = points.length
-    if (len < 2) return Trend.FLAT
+    if (len < 2) return [Trend.FLAT, 0]
 
     const last = points[len - 1].y as number
     const secondLast = points[len - 2].y as number
@@ -31,7 +31,9 @@ export const useTrend = (points: LineSerieData['data']): [Trend, number] => {
  *   - The minimum value
  *   - The maximum value
  */
-export const useRange = (points: LineSerieData['data']): [number, number, number] => {
+export const useRange = (
+  points: LineSerieData['data'],
+): [number, number, number] => {
   const [min, max] = useMemo(() => {
     if (!Array.isArray(points) || points.length === 0) return [0, 0]
 

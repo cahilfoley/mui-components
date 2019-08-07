@@ -88,7 +88,7 @@ const StatCard = ({
   const SliceTooltip = useCallback(
     ({ slice }: any) => (
       <Paper className={classes.tooltip}>
-        {slice.points.map(point => (
+        {slice.points.map((point: any) => (
           <div key={point.x}>
             {point.data.x}: {point.data.y}
             {units}

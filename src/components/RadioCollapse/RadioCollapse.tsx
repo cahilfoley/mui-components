@@ -51,14 +51,14 @@ const RadioCollapse = (props: RadioCollapseProps) => {
     name,
     showNoSelection,
   } = props
-  const classes = useStyles()
+  const classes = useStyles({})
 
   const [open, setOpen] = useState(false)
 
   const toggleCollapse = useCallback(() => setOpen(x => !x), [])
 
   const handleChange = useCallback(
-    (event: React.SyntheticEvent) =>
+    (event: React.ChangeEvent<{}>) =>
       onChange((event.target as HTMLInputElement).value),
     [onChange],
   )

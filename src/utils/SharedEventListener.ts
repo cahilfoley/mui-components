@@ -1,4 +1,6 @@
-type EventHandler<E extends keyof DocumentEventMap> = (event: DocumentEventMap[E]) => void
+type EventHandler<E extends keyof DocumentEventMap> = (
+  event: DocumentEventMap[E],
+) => void
 
 export class SharedEventListener<E extends keyof DocumentEventMap> {
   private subscribers: EventHandler<E>[]
@@ -12,11 +14,11 @@ export class SharedEventListener<E extends keyof DocumentEventMap> {
   }
 
   private attach = () => {
-    this.target.addEventListener(this.event, this.handleEvent)
+    this.target.addEventListener(this.event, this.handleEvent as any)
   }
 
   private detach = () => {
-    this.target.removeEventListener(this.event, this.handleEvent)
+    this.target.removeEventListener(this.event, this.handleEvent as any)
   }
 
   private handleEvent = (event: DocumentEventMap[E]) => {

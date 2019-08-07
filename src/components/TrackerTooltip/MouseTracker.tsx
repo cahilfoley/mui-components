@@ -22,9 +22,13 @@ interface MouseTrackerProps {
 const createTransform = ({ clientX, clientY }: MouseTrackerProps) =>
   `translateX(${clientX + 10}px) translateY(${clientY + 10}px)`
 
-const MouseTracker: React.FC<MouseTrackerProps> = ({ children, clientX, clientY }) => {
-  const classes = useStyles()
-  const wrapperRef = useRef<HTMLDivElement>()
+const MouseTracker: React.FC<MouseTrackerProps> = ({
+  children,
+  clientX,
+  clientY,
+}) => {
+  const classes = useStyles({})
+  const wrapperRef = useRef<HTMLDivElement>() as React.RefObject<HTMLDivElement>
   const positionRef = useRef({ clientX, clientY })
 
   useEffect(() => {
@@ -35,14 +39,18 @@ const MouseTracker: React.FC<MouseTrackerProps> = ({ children, clientX, clientY 
     let nextFrame: number
 
     const updatePosition = () => {
-      wrapperRef.current.style.transform = createTransform(positionRef.current)
+      if (wrapperRef.current) {
+        wrapperRef.current.style.transform = createTransform(
+          positionRef.current,
+        )
+      }
       nextFrame = requestAnimationFrame(updatePosition)
     }
 
     updatePosition()
 
     return () => cancelAnimationFrame(nextFrame)
-  }, [])
+  }, [wrapperRef])
 
   return (
     <div ref={wrapperRef} className={classes.wrapper}>

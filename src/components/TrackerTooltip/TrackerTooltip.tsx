@@ -32,7 +32,7 @@ const TrackerTooltip: React.FC<TrackerTooltipProps> = ({
   rootProps = {},
   ...props
 }) => {
-  const classes = useStyles()
+  const classes = useStyles({})
   const [ref, rect] = useBoundingRect()
   const [position] = useMousePosition({ throttle: 10 })
 

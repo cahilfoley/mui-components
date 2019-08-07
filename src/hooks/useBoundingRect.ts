@@ -4,8 +4,11 @@ import { useCallback, useLayoutEffect, useState, useRef } from 'react'
  * Returns the bounding client rect of a HTML element, uses the `ResizeObserver` api if available to detect changes to the
  * size. Falls back to listening for resize events on the window.
  */
-export function useBoundingRect<T extends HTMLElement>(): [React.Ref<T>, ClientRect | DOMRect] {
-  const ref = useRef<T>()
+export function useBoundingRect<T extends HTMLElement>(): [
+  React.Ref<T>,
+  ClientRect | DOMRect
+] {
+  const ref = useRef<T>() as React.RefObject<T>
   const [rect, setRect] = useState()
 
   const recalculator = useCallback(() => {

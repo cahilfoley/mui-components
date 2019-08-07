@@ -20,7 +20,7 @@ const useStyles = makeStyles({
 })
 
 const MegaMenuGroup = (props: MegaMenuGroupProps) => {
-  const classes = useStyles()
+  const classes = useStyles({})
 
   return (
     <div className={classes.root}>
