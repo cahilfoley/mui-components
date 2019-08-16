@@ -17,6 +17,7 @@
     "@types/react-dom": "16.8.4",
     "@types/react-router-dom": "4.3.3",
     "@types/react-virtualized": "9.21.2",
+    "@types/styled-components": "^4.1.18",
     "classnames": "2.2.6",
     "clsx": "1.0.4",
     "mdi-material-ui": "6.2.0",
