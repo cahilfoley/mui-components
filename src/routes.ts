@@ -3,6 +3,7 @@ import * as MultiCarousel from './components/MultiCarousel/demo'
 import * as RadioCollapse from './components/RadioCollapse/demo'
 import * as StatCard from './components/StatCard/demo'
 import * as TrackerTooltip from './components/TrackerTooltip/demo'
+import * as GlobalTrackerTooltip from './components/GlobalTrackerTooltip/demo'
 import * as RevealCard from './components/RevealCard/demo'
 
 // import fs from 'fs'
@@ -64,13 +65,26 @@ export default [
   },
   {
     component: TrackerTooltip.Demo,
+    benchmark: TrackerTooltip.Benchmark,
     // code: getDemoCode('TrackerTooltip'),
     description:
       'The TrackerTooltip allows any content to be attached to the mouse as a sticky tooltip when contained content is hovered.',
+    exact: true,
     useCases: ['Content previews', 'Enhanced tooltips'],
     gif: TrackerTooltip.gif,
     path: '/TrackerTooltip',
     title: 'Tracker Tooltip',
+  },
+  {
+    component: GlobalTrackerTooltip.Demo,
+    benchmark: GlobalTrackerTooltip.Benchmark,
+    // code: getDemoCode('TrackerTooltip'),
+    description:
+      'A context based version of the TrackerTooltip that performs well when many tooltips are rendered at once.',
+    useCases: ['Content previews', 'Enhanced tooltips'],
+    gif: TrackerTooltip.gif,
+    path: '/GlobalTrackerTooltip',
+    title: 'Global Tracker Tooltip',
   },
   {
     component: RevealCard.Demo,

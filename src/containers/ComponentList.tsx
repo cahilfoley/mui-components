@@ -44,6 +44,13 @@ const ComponentList = () => {
                 </Link>
               </Typography>
               <Typography paragraph>{route.description}</Typography>
+              {route.benchmark && (
+                <Typography>
+                  <Link component={RouterLink} to={`${route.path}/benchmark`}>
+                    Benchmark
+                  </Link>
+                </Typography>
+              )}
             </Grid>
           </Grid>
           <Box py={2}>

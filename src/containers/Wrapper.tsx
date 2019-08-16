@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { makeStyles, MuiThemeProvider } from '@material-ui/core/styles'
+import { ThemeProvider } from 'styled-components'
 import Box from '@material-ui/core/Box'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import IconButton from '@material-ui/core/IconButton'
@@ -29,27 +30,29 @@ const Wrapper: React.FC<{}> = ({ children }) => {
 
   return (
     <Router>
-      <MuiThemeProvider theme={dark ? darkTheme : lightTheme}>
-        <CssBaseline />
-        <div className={classes.root}>
-          <AppBar position="static" color="primary">
-            <Toolbar>
-              <Typography
-                variant="h6"
-                color="textPrimary"
-                className={classes.title}
-              >
-                Component Ideas
-              </Typography>
+      <ThemeProvider theme={dark ? darkTheme : lightTheme}>
+        <MuiThemeProvider theme={dark ? darkTheme : lightTheme}>
+          <CssBaseline />
+          <div className={classes.root}>
+            <AppBar position="static" color="primary">
+              <Toolbar>
+                <Typography
+                  variant="h6"
+                  color="textPrimary"
+                  className={classes.title}
+                >
+                  Component Ideas
+                </Typography>
 
-              <IconButton onClick={toggleTheme}>
-                <InvertColors />
-              </IconButton>
-            </Toolbar>
-          </AppBar>
-        </div>
-        <Box m={4}>{children}</Box>
-      </MuiThemeProvider>
+                <IconButton onClick={toggleTheme}>
+                  <InvertColors />
+                </IconButton>
+              </Toolbar>
+            </AppBar>
+          </div>
+          <Box m={4}>{children}</Box>
+        </MuiThemeProvider>
+      </ThemeProvider>
     </Router>
   )
 }

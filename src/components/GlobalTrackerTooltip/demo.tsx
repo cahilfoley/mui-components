@@ -5,6 +5,7 @@ import TrackerTooltip from './'
 import StatCard from '../StatCard'
 import { generateDataset } from '../StatCard/demo'
 import gif from './demo.gif'
+import { TrackerProvider } from './GlobalTrackerContext'
 
 export * from './benchmark'
 export { gif }
@@ -35,8 +36,8 @@ export const Demo = () => {
   const classes = useStyles({})
 
   return (
-    <>
-      <TrackerTooltip content="Say hello to an epic tooltip 🔥🔥">
+    <TrackerProvider>
+      <TrackerTooltip content="Say hello to an epic tooltip ð¥ð¥">
         <Typography variant="h5" className={classes.hoverZone}>
           Hover me for text
         </Typography>
@@ -72,7 +73,7 @@ export const Demo = () => {
           Hover me for sick dance moves
         </Typography>
       </TrackerTooltip>
-    </>
+    </TrackerProvider>
   )
 }
 /** END DEMO */
