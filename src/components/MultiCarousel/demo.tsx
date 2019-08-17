@@ -20,23 +20,21 @@ export const Demo = () => (
       Item Width
     </Typography>
     <Typography paragraph>
-      Use the <code>numberToShow</code> property to control the number of items
-      that are visible at a time. This should always be less than or equal to
-      the number of items in the collection.
+      Use the <code>numberToShow</code> property to control the number of items that are visible at
+      a time. This should always be less than or equal to the number of items in the collection.
     </Typography>
     <Typography>
-      The example below has 6 children and the <code>numberToShow</code> is set
-      to 2
+      The example below has 6 children and the <code>numberToShow</code> is set to 2
     </Typography>
     <MultiCarousel numberToShow={2}>{statCards}</MultiCarousel>
 
     <Typography paragraph>
-      If the number of items passed in is less than the number of items then the
-      item will still be spaced correctly.
+      If the number of items passed in is less than the number of items then the item will still be
+      spaced correctly.
     </Typography>
     <Typography>
-      This example has a single item passed to the carousel with the{' '}
-      <code>numberToShow</code> set to 3
+      This example has a single item passed to the carousel with the <code>numberToShow</code> set
+      to 3
     </Typography>
     <MultiCarousel numberToShow={3}>{singleStatCard}</MultiCarousel>
     <br />
@@ -45,8 +43,7 @@ export const Demo = () => (
       Disable Autoplay
     </Typography>
     <Typography>
-      Autoplay is enabled by default, to disable it pass the{' '}
-      <code>disableAutoPlay</code> property
+      Autoplay is enabled by default, to disable it pass the <code>disableAutoPlay</code> property
     </Typography>
     <MultiCarousel numberToShow={3} disableAutoPlay>
       {statCards}
@@ -55,8 +52,8 @@ export const Demo = () => (
 
     <Typography variant="h5">Autoplay Timing</Typography>
     <Typography>
-      You can use the <code>interval</code> property to specify the number of
-      milliseconds between each change.
+      You can use the <code>interval</code> property to specify the number of milliseconds between
+      each change.
     </Typography>
     <MultiCarousel numberToShow={1} interval={2000}>
       {statCards}
