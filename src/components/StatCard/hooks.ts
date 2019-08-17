@@ -31,9 +31,7 @@ export const useTrend = (points: LineSerieData['data']): [Trend, number] => {
  *   - The minimum value
  *   - The maximum value
  */
-export const useRange = (
-  points: LineSerieData['data'],
-): [number, number, number] => {
+export const useRange = (points: LineSerieData['data']): [number, number, number] => {
   const [min, max] = useMemo(() => {
     if (!Array.isArray(points) || points.length === 0) return [0, 0]
 

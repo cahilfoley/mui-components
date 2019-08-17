@@ -24,11 +24,7 @@ const ComponentList = () => {
               justify="center"
               style={{ display: 'flex' }}
             >
-              <img
-                src={route.gif}
-                alt={route.title}
-                style={{ maxHeight: 150, maxWidth: '100%' }}
-              />
+              <img src={route.gif} alt={route.title} style={{ maxHeight: 150, maxWidth: '100%' }} />
             </Grid>
             <Grid
               item

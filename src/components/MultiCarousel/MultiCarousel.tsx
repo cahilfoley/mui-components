@@ -28,14 +28,8 @@ const MultiCarousel = ({
   const itemCount = useMemo(() => children.length, [children])
 
   // The number of items to show can't exceed the number of items available
-  const showCount = useMemo(() => Math.min(numberToShow, itemCount), [
-    numberToShow,
-    itemCount,
-  ])
-  const maxIndex = useMemo(() => itemCount - showCount + 1, [
-    itemCount,
-    showCount,
-  ])
+  const showCount = useMemo(() => Math.min(numberToShow, itemCount), [numberToShow, itemCount])
+  const maxIndex = useMemo(() => itemCount - showCount + 1, [itemCount, showCount])
 
   const [index, setIndex] = useState(0)
   const [lastClick, setLastClick] = useState(() => Date.now())
@@ -54,10 +48,7 @@ const MultiCarousel = ({
   const moveRight = () => moveToIndex(Math.min(index + 1, maxIndex))
 
   // Same as moveRight except it loops back to the start
-  const moveNext = useCallback(() => moveToIndex(x => (x + 1) % maxIndex), [
-    maxIndex,
-    moveToIndex,
-  ])
+  const moveNext = useCallback(() => moveToIndex(x => (x + 1) % maxIndex), [maxIndex, moveToIndex])
 
   // Auto play timer
   useEffect(() => {
@@ -111,9 +102,7 @@ const MultiCarousel = ({
           <ArrowForward />
         </Fab>
       </div>
-      {itemCount !== 0 && (
-        <Dots index={index} count={maxIndex} onDotClick={moveToIndex} />
-      )}
+      {itemCount !== 0 && <Dots index={index} count={maxIndex} onDotClick={moveToIndex} />}
     </div>
   )
 }

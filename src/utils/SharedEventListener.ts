@@ -1,6 +1,4 @@
-type EventHandler<E extends keyof DocumentEventMap> = (
-  event: DocumentEventMap[E],
-) => void
+type EventHandler<E extends keyof DocumentEventMap> = (event: DocumentEventMap[E]) => void
 
 export class SharedEventListener<E extends keyof DocumentEventMap> {
   private subscribers: EventHandler<E>[]

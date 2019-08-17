@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import Page from './Page'
 import Typography from '@material-ui/core/Typography'
 
 const Wrapper = styled.div`

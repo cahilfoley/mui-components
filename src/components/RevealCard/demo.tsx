@@ -15,9 +15,8 @@ export const Demo = () => {
         info="Well done, you hovered it, to go back to the card just move your mouse off the card."
       >
         <Typography paragraph align="justify">
-          Using hover mode will show the info overlay whenever the mouse hovers
-          over the <InfoIcon style={{ height: 16 }} /> icon in the top right of
-          the card.
+          Using hover mode will show the info overlay whenever the mouse hovers over the{' '}
+          <InfoIcon style={{ height: 16 }} /> icon in the top right of the card.
         </Typography>
       </RevealCard>
       <br />

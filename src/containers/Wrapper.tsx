@@ -36,11 +36,7 @@ const Wrapper: React.FC<{}> = ({ children }) => {
           <div className={classes.root}>
             <AppBar position="static" color="primary">
               <Toolbar>
-                <Typography
-                  variant="h6"
-                  color="textPrimary"
-                  className={classes.title}
-                >
+                <Typography variant="h6" color="textPrimary" className={classes.title}>
                   Component Ideas
                 </Typography>
 

@@ -8,8 +8,7 @@ export { gif }
 
 /** BEGIN DEMO */
 /** Generate a random integer between a min and a max value */
-export const randomInt = (min: number, max: number) =>
-  Math.floor(Math.random() * (max - min) + min)
+export const randomInt = (min: number, max: number) => Math.floor(Math.random() * (max - min) + min)
 
 /** Generates a random distribution of points */
 export const generateDataset = (
@@ -35,36 +34,16 @@ export const Demo = () => {
     <>
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6} md={3} lg={3}>
-          <StatCard
-            data={metrics[0]}
-            title="Hampster Efficiency"
-            units="pt"
-            footnote="Last week"
-          />
+          <StatCard data={metrics[0]} title="Hampster Efficiency" units="pt" footnote="Last week" />
         </Grid>
         <Grid item xs={12} sm={6} md={3} lg={3}>
-          <StatCard
-            data={metrics[1]}
-            title="Potato Utilisation"
-            units="%"
-            footnote="YTD"
-          />
+          <StatCard data={metrics[1]} title="Potato Utilisation" units="%" footnote="YTD" />
         </Grid>
         <Grid item xs={12} sm={6} md={3} lg={3}>
-          <StatCard
-            data={metrics[2]}
-            title="Toaster Output"
-            units="kw"
-            footnote="MTD"
-          />
+          <StatCard data={metrics[2]} title="Toaster Output" units="kw" footnote="MTD" />
         </Grid>
         <Grid item xs={12} sm={6} md={3} lg={3}>
-          <StatCard
-            data={metrics[3]}
-            title="Donkey Turnover"
-            units="%"
-            footnote="Today"
-          />
+          <StatCard data={metrics[3]} title="Donkey Turnover" units="%" footnote="Today" />
         </Grid>
       </Grid>
     </>

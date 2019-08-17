@@ -15,39 +15,37 @@ const Home: React.FC = () => (
 const App = () => (
   <Switch>
     <Route component={Home} path="/" exact />
-    {routes.flatMap(
-      ({ component: Component, benchmark: Benchmark, exact, title, path }) => {
-        const output = [
+    {routes.flatMap(({ component: Component, benchmark: Benchmark, exact, title, path }) => {
+      const output = [
+        <Route
+          key={path}
+          path={path}
+          exact={!!Benchmark || exact}
+          render={() => (
+            <Page title={title}>
+              <Component />
+              {/* <Code>{code}</Code> */}
+            </Page>
+          )}
+        />,
+      ]
+
+      if (Benchmark) {
+        output.push(
           <Route
-            key={path}
-            path={path}
-            exact={!!Benchmark || exact}
+            path={`${path}/benchmark`}
+            key={`${path}/benchmark`}
             render={() => (
-              <Page title={title}>
-                <Component />
-                {/* <Code>{code}</Code> */}
+              <Page title={`${title} Benchmark`}>
+                <Benchmark />
               </Page>
             )}
           />,
-        ]
+        )
+      }
 
-        if (Benchmark) {
-          output.push(
-            <Route
-              path={`${path}/benchmark`}
-              key={`${path}/benchmark`}
-              render={() => (
-                <Page title={`${title} Benchmark`}>
-                  <Benchmark />
-                </Page>
-              )}
-            />,
-          )
-        }
-
-        return output
-      },
-    )}
+      return output
+    })}
   </Switch>
 )
 
