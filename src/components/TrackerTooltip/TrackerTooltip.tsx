@@ -1,11 +1,11 @@
-import React, { cloneElement, useEffect, useContext, useMemo, PropsWithChildren } from 'react'
+import React, { cloneElement, useEffect, useContext, useMemo } from 'react'
 import Paper, { PaperProps } from '@material-ui/core/Paper'
 import { useBoundingRect } from '../../hooks'
 import { TrackerContext } from './context'
 import { makeStyles } from '@material-ui/core/styles'
 import StandaloneTracker from './StandaloneTracker'
 
-type TrackerTooltipProps = {
+export type TrackerTooltipProps = {
   children: React.ReactElement
   component?: React.FC
   rootProps?: PaperProps
@@ -23,7 +23,7 @@ const useStyles = makeStyles(
   { name: 'TrackerTooltip' },
 )
 
-const TrackerTooltip: React.FC<TrackerTooltipProps> = ({
+export const TrackerTooltip: React.FC<TrackerTooltipProps> = ({
   children,
   content,
   component: Component = Paper,
