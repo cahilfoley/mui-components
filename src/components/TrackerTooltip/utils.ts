@@ -4,10 +4,7 @@ export type Point = {
   [attr: string]: any
 }
 
-export const rectContainsPosition = (
-  rect: DOMRect | ClientRect,
-  point: Point,
-): boolean => {
+export const rectContainsPosition = (rect: DOMRect | ClientRect, point: Point): boolean => {
   return (
     rect &&
     point.clientX >= rect.left &&
