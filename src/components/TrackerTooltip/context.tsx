@@ -1,6 +1,7 @@
 import React, { createContext, useState, useRef, useEffect } from 'react'
 import { useMousePosition } from '../../hooks'
 import MouseTracker from './MouseTracker'
+import { rectContainsPosition } from './utils'
 
 export type Zone = {
   rect: ClientRect | DOMRect
@@ -8,22 +9,19 @@ export type Zone = {
 }
 
 export type GlobalTooltipValue = {
-  registerZone(zone: Zone): () => void
+  contextAvailable: boolean
+  registerZone: (zone: Zone) => () => void
 }
 
-export const trackerContext = createContext<GlobalTooltipValue>({
-  registerZone(zone: Zone) {
-    return () => {}
-  },
+export const TrackerContext = createContext<GlobalTooltipValue>({
+  contextAvailable: false,
+  registerZone: (zone: Zone) => () => {},
 } as any)
-
-const { Provider } = trackerContext
 
 export const TrackerProvider: React.FC = ({ children }) => {
   const zones = useRef<Zone[]>([])
 
   const registerZone = (zone: Zone) => {
-    console.log('Registering zone', zones.current)
     zones.current.push(zone)
     return () => {
       zones.current = zones.current.filter(x => x !== zone)
@@ -34,25 +32,18 @@ export const TrackerProvider: React.FC = ({ children }) => {
   const [currentZone, setCurrentZone] = useState<Zone | undefined>()
 
   useEffect(() => {
-    const match = zones.current.find(
-      ({ rect }) =>
-        rect &&
-        position.clientX >= rect.left &&
-        position.clientX <= rect.right &&
-        position.clientY >= rect.top &&
-        position.clientY <= rect.bottom,
-    )
+    const match = zones.current.find(({ rect }) => rectContainsPosition(rect, position))
     setCurrentZone(match)
-  }, [position.clientX, position.clientY, setCurrentZone])
+  }, [position, setCurrentZone])
 
   return (
-    <Provider value={{ registerZone }}>
+    <TrackerContext.Provider value={{ contextAvailable: true, registerZone }}>
       {children}
       {currentZone && (
         <MouseTracker clientX={position.clientX} clientY={position.clientY}>
           {currentZone.content}
         </MouseTracker>
       )}
-    </Provider>
+    </TrackerContext.Provider>
   )
 }

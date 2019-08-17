@@ -4,9 +4,7 @@ import { Theme as NivoTheme } from '@nivo/core'
 export default (theme: Theme): NivoTheme => {
   const nivoTheme: any = {
     crosshair: {
-      line: {
-        stroke: theme.palette.text.primary,
-      },
+      line: { stroke: theme.palette.text.primary },
     },
   }
 

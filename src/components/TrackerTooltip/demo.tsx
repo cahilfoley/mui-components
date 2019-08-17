@@ -27,16 +27,14 @@ const useStyles = makeStyles(theme => ({
 const dataset = generateDataset(12, { varianceLow: 0, varianceHigh: 50 })
 
 // Can override the default tooltip container by providing your own
-const PlainWrapper: React.FC = ({ children }) => (
-  <div style={{ minWidth: 300 }}>{children}</div>
-)
+const PlainWrapper: React.FC = ({ children }) => <div style={{ minWidth: 300 }}>{children}</div>
 
 export const Demo = () => {
   const classes = useStyles({})
 
   return (
     <>
-      <TrackerTooltip content="Say hello to an epic tooltip 🔥🔥">
+      <TrackerTooltip content="Say hello to an epic tooltip ð¥ð¥">
         <Typography variant="h5" className={classes.hoverZone}>
           Hover me for text
         </Typography>
@@ -45,12 +43,7 @@ export const Demo = () => {
       <TrackerTooltip
         component={PlainWrapper}
         content={
-          <StatCard
-            data={dataset}
-            title="Tooltip Awesomeness"
-            units="%"
-            footnote="Can't even"
-          />
+          <StatCard data={dataset} title="Tooltip Awesomeness" units="%" footnote="Can't even" />
         }
       >
         <Typography variant="h5" className={classes.hoverZone}>

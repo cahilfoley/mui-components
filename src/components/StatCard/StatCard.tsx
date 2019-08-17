@@ -13,10 +13,7 @@ const baseLineProps: Partial<LineProps> = {
   enableArea: true,
   enableGridX: false,
   enableGridY: false,
-  margin: {
-    left: 4,
-    right: 4,
-  },
+  margin: { left: 4, right: 4 },
   axisTop: null,
   axisRight: null,
   axisLeft: null,

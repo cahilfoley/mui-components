@@ -1,12 +1,13 @@
-import React, { cloneElement, useMemo } from 'react'
-import { makeStyles } from '@material-ui/core/styles'
+import React, { cloneElement, useEffect, useContext, useMemo } from 'react'
 import Paper, { PaperProps } from '@material-ui/core/Paper'
-import { useMousePosition, useBoundingRect } from '../../hooks'
-import MouseTracker from './MouseTracker'
+import { useBoundingRect } from '../../hooks'
+import { TrackerContext } from './context'
+import { makeStyles } from '@material-ui/core/styles'
+import StandaloneTracker from './StandaloneTracker'
 
-type TrackerTooltipProps = {
+export type TrackerTooltipProps = {
   children: React.ReactElement
-  component?: React.FunctionComponent
+  component?: React.FC
   rootProps?: PaperProps
 } & ({
   content: React.ReactNode
@@ -18,44 +19,35 @@ const useStyles = makeStyles(
       padding: theme.spacing(2),
       zIndex: theme.zIndex.tooltip,
     },
-    wrapper: {
-      width: 'auto',
-    },
   }),
   { name: 'TrackerTooltip' },
 )
 
-const TrackerTooltip: React.FC<TrackerTooltipProps> = ({
+export const TrackerTooltip: React.FC<TrackerTooltipProps> = ({
   children,
   content,
   component: Component = Paper,
-  rootProps = {},
   ...props
 }) => {
-  const classes = useStyles({})
+  const classes = useStyles()
+  const tracker = useContext(TrackerContext)
   const [ref, rect] = useBoundingRect()
-  const [position] = useMousePosition({ throttle: 10 })
 
-  const hover = useMemo(() => {
-    if (!rect) return false
-    return (
-      position.clientX >= rect.left &&
-      position.clientX <= rect.right &&
-      position.clientY >= rect.top &&
-      position.clientY <= rect.bottom
-    )
-  }, [position, rect])
+  const tooltipContent = useMemo(() => {
+    return <Component className={classes.paper}>{content}</Component>
+  }, [classes.paper, content])
+
+  useEffect(() => {
+    if (tracker.contextAvailable) {
+      return tracker.registerZone({ content: tooltipContent, rect })
+    }
+  }, [tooltipContent, tracker, rect])
 
   return (
     <>
       {cloneElement(children, { ref, ...props })}
-
-      {hover && (
-        <MouseTracker {...position}>
-          <Component className={classes.paper} {...rootProps}>
-            {content}
-          </Component>
-        </MouseTracker>
+      {!tracker.contextAvailable && (
+        <StandaloneTracker rect={rect}>{tooltipContent}</StandaloneTracker>
       )}
     </>
   )

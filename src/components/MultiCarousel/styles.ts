@@ -22,8 +22,7 @@ export const useStyles = makeStyles<Theme, UseStyleProps>(
         padding: theme.spacing(0, 6),
       },
       scrollInner: {
-        width: ({ itemCount, showCount }) =>
-          `${(itemCount / showCount || 0) * 100}%`,
+        width: ({ itemCount, showCount }) => `${(itemCount / showCount || 0) * 100}%`,
         willChange: 'transform',
         transition: `transform ${duration.standard}ms ${easing.easeInOut}`,
       },

@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useLayoutEffect } from 'react'
+import React, { useRef, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles(
@@ -22,11 +22,7 @@ interface MouseTrackerProps {
 const createTransform = ({ clientX, clientY }: MouseTrackerProps) =>
   `translateX(${clientX + 10}px) translateY(${clientY + 10}px)`
 
-const MouseTracker: React.FC<MouseTrackerProps> = ({
-  children,
-  clientX,
-  clientY,
-}) => {
+const MouseTracker: React.FC<MouseTrackerProps> = ({ children, clientX, clientY }) => {
   const classes = useStyles({})
   const wrapperRef = useRef<HTMLDivElement>() as React.RefObject<HTMLDivElement>
   const positionRef = useRef({ clientX, clientY })
@@ -35,14 +31,12 @@ const MouseTracker: React.FC<MouseTrackerProps> = ({
     positionRef.current = { clientX, clientY }
   }, [clientX, clientY])
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     let nextFrame: number
 
     const updatePosition = () => {
       if (wrapperRef.current) {
-        wrapperRef.current.style.transform = createTransform(
-          positionRef.current,
-        )
+        wrapperRef.current.style.transform = createTransform(positionRef.current)
       }
       nextFrame = requestAnimationFrame(updatePosition)
     }

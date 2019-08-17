@@ -42,15 +42,7 @@ export interface RadioCollapseProps {
 }
 
 const RadioCollapse = (props: RadioCollapseProps) => {
-  const {
-    onChange,
-    options,
-    label,
-    value,
-    helperText,
-    name,
-    showNoSelection,
-  } = props
+  const { onChange, options, label, value, helperText, name, showNoSelection } = props
   const classes = useStyles({})
 
   const [open, setOpen] = useState(false)
@@ -58,33 +50,22 @@ const RadioCollapse = (props: RadioCollapseProps) => {
   const toggleCollapse = useCallback(() => setOpen(x => !x), [])
 
   const handleChange = useCallback(
-    (event: React.ChangeEvent<{}>) =>
-      onChange((event.target as HTMLInputElement).value),
+    (event: React.ChangeEvent<{}>) => onChange((event.target as HTMLInputElement).value),
     [onChange],
   )
 
   const optionControls = useMemo(
     () =>
       Object.entries(options).map(([optValue, optLabel]) => (
-        <FormControlLabel
-          key={optValue}
-          value={optValue}
-          label={optLabel}
-          control={<Radio />}
-        />
+        <FormControlLabel key={optValue} value={optValue} label={optLabel} control={<Radio />} />
       )),
     [options],
   )
 
   return (
     <FormControl component="fieldset" className={classes.formControl} fullWidth>
-      <FormLabel
-        component="legend"
-        onClick={toggleCollapse}
-        className={classes.formLabel}
-      >
-        {label} {value && <>({value})</>}{' '}
-        {open ? <ExpandLess /> : <ExpandMore />}
+      <FormLabel component="legend" onClick={toggleCollapse} className={classes.formLabel}>
+        {label} {value && <>({value})</>} {open ? <ExpandLess /> : <ExpandMore />}
       </FormLabel>
       <Collapse in={open}>
         <RadioGroup
@@ -94,9 +75,7 @@ const RadioCollapse = (props: RadioCollapseProps) => {
           value={value}
           onChange={handleChange}
         >
-          {showNoSelection && (
-            <FormControlLabel value="" control={<Radio />} label="None" />
-          )}
+          {showNoSelection && <FormControlLabel value="" control={<Radio />} label="None" />}
           {optionControls}
         </RadioGroup>
         {helperText && <FormHelperText>{helperText}</FormHelperText>}

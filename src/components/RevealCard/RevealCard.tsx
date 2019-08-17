@@ -71,12 +71,7 @@ export type RevealCardProps = PropsWithChildren<{
   togglable?: boolean
 }>
 
-const RevealCard: React.FC<RevealCardProps> = ({
-  children,
-  info,
-  title,
-  togglable = false,
-}) => {
+const RevealCard: React.FC<RevealCardProps> = ({ children, info, title, togglable = false }) => {
   const classes = useStyles({ togglable })
   const [open, setOpen] = useState(false)
 

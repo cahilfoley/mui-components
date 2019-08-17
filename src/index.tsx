@@ -1,4 +1,5 @@
 /// <reference types="./typings/assets" />
+/// <reference types="./typings/styled" />
 
 import * as React from 'react'
 import { render } from 'react-dom'

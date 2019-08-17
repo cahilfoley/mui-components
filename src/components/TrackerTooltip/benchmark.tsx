@@ -1,30 +1,62 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
 import styled from 'styled-components'
+import FormGroup from '@material-ui/core/FormGroup'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
 import Typography from '@material-ui/core/Typography'
-import TrackerTooltip from './'
+import Switch from '@material-ui/core/Switch'
+import TrackerTooltip, { TrackerProvider } from './'
+import Code from '../Code'
 import StatCard from '../StatCard'
 import { generateDataset } from '../StatCard/demo'
 
 const Root = styled.div`
   display: grid;
-  /* grid-column-gap: 16px; */
   grid-template-columns: repeat(3, 1fr);
 `
 
-const HoverText = styled(Typography)`
+const HoverText = styled.h5`
   border: 1px solid ${({ theme }) => theme.palette.text.primary};
-  padding: 32px auto;
+  padding: 16px;
+  margin: 0;
   display: grid;
   text-align: center;
   place-items: center;
 `
 
+const trackerProviderSample = `
+import {
+  TrackerTooltip,
+  TrackerProvider,
+} from 'components/TrackerTooltip'
+
+<TrackerProvider>
+  <div>
+    <TrackerTooltip>
+      <div>
+        <h4>Hover me to see the magic</h4>
+        <p>It's even high performance!</p>
+      </div>
+    </TrackerTooltip>
+    <TrackerTooltip>
+      {/* Something else */}
+    </TrackerTooltip>
+    {/* ... a few hundred more */}
+  </div>
+</TrackerProvider>
+`.trim()
+
 // Can override the default tooltip container by providing your own
-const PlainWrapper: React.FC = ({ children }) => (
-  <div style={{ minWidth: 300 }}>{children}</div>
-)
+const PlainWrapper: React.FC = ({ children }) => <div style={{ minWidth: 300 }}>{children}</div>
 
 export const Benchmark = () => {
+  const [isUsingContext, setIsUsingContext] = useState(true)
+
+  const DemoWrapper = useMemo(() => {
+    if (isUsingContext) return TrackerProvider
+
+    return React.Fragment
+  }, [isUsingContext])
+
   const items = useMemo(() => {
     const output = []
 
@@ -45,7 +77,7 @@ export const Benchmark = () => {
             />
           }
         >
-          <HoverText variant="h5">Hover me #{i}</HoverText>
+          <HoverText>Hover me #{i}</HoverText>
         </TrackerTooltip>,
       )
     }
@@ -53,5 +85,26 @@ export const Benchmark = () => {
     return output
   }, [])
 
-  return <Root>{items}</Root>
+  return (
+    <DemoWrapper>
+      <Typography>
+        If you are rendering a lot of <code>TrackerTooltip</code> components you can wrap them in a{' '}
+        <code>TrackerProvider</code> to improve performance.
+      </Typography>
+      <Code>{trackerProviderSample}</Code>
+      <FormGroup row>
+        <FormControlLabel
+          control={
+            <Switch
+              color="primary"
+              checked={isUsingContext}
+              onChange={event => setIsUsingContext(event.target.checked)}
+            />
+          }
+          label="Using context provider"
+        />
+      </FormGroup>
+      <Root>{items}</Root>
+    </DemoWrapper>
+  )
 }

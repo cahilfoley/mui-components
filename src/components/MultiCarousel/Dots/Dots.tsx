@@ -38,12 +38,7 @@ const Dots = ({ count, index, onDotClick }: DotsProps) => {
     <div className={classes.root}>
       <div className={classes.dots}>
         {dots.map((dot, i) => (
-          <div
-            key={i}
-            className={classes.dotOuter}
-            style={dot.style}
-            onClick={dot.clickHandler}
-          >
+          <div key={i} className={classes.dotOuter} style={dot.style} onClick={dot.clickHandler}>
             <Paper
               elevation={0}
               className={classes.dot}
