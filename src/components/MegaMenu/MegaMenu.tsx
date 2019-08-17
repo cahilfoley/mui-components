@@ -28,8 +28,7 @@ const MegaMenu = (props: MegaMenuProps) => {
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null)
 
   const handleClick = useCallback(
-    (event: React.MouseEvent) =>
-      setAnchorEl(event.currentTarget as HTMLElement),
+    (event: React.MouseEvent) => setAnchorEl(event.currentTarget as HTMLElement),
     [],
   )
 
@@ -47,11 +46,7 @@ const MegaMenu = (props: MegaMenuProps) => {
         PaperProps={{ className: classes.popoverPaper }}
       >
         {props.items.map(group => (
-          <MegaMenuGroup
-            key={group.label}
-            handleClose={handleClose}
-            {...group}
-          />
+          <MegaMenuGroup key={group.label} handleClose={handleClose} {...group} />
         ))}
       </Popover>
     </>
