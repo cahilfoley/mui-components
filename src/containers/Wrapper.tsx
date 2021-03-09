@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
-import { makeStyles, MuiThemeProvider } from '@material-ui/core/styles'
+import { makeStyles, MuiThemeProvider, StylesProvider } from '@material-ui/core/styles'
 import { ThemeProvider } from 'styled-components'
 import Box from '@material-ui/core/Box'
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -26,27 +26,31 @@ const Wrapper: React.FC<{}> = ({ children }) => {
   const classes = useStyles({})
   const [dark, setDark] = React.useState(true)
 
-  const toggleTheme = () => setDark(x => !x)
+  const toggleTheme = () => setDark((x) => !x)
 
   return (
     <Router>
       <ThemeProvider theme={dark ? darkTheme : lightTheme}>
         <MuiThemeProvider theme={dark ? darkTheme : lightTheme}>
           <CssBaseline />
-          <div className={classes.root}>
-            <AppBar position="static" color="primary">
-              <Toolbar>
-                <Typography variant="h6" color="textPrimary" className={classes.title}>
-                  Component Ideas
-                </Typography>
+          <StylesProvider injectFirst>
+            <>
+              <div className={classes.root}>
+                <AppBar position="static" color="primary">
+                  <Toolbar>
+                    <Typography variant="h6" color="textPrimary" className={classes.title}>
+                      Component Ideas
+                    </Typography>
 
-                <IconButton onClick={toggleTheme}>
-                  <InvertColors />
-                </IconButton>
-              </Toolbar>
-            </AppBar>
-          </div>
-          <Box m={4}>{children}</Box>
+                    <IconButton onClick={toggleTheme}>
+                      <InvertColors />
+                    </IconButton>
+                  </Toolbar>
+                </AppBar>
+              </div>
+              <Box m={4}>{children}</Box>
+            </>
+          </StylesProvider>
         </MuiThemeProvider>
       </ThemeProvider>
     </Router>

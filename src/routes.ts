@@ -1,5 +1,6 @@
 import * as MegaMenu from './components/MegaMenu/demo'
 import * as MultiCarousel from './components/MultiCarousel/demo'
+import * as ProductCard from './components/ProductCard/demo'
 import * as RadioCollapse from './components/RadioCollapse/demo'
 import * as StatCard from './components/StatCard/demo'
 import * as TrackerTooltip from './components/TrackerTooltip/demo'
@@ -51,6 +52,15 @@ export default [
     gif: StatCard.gif,
     path: '/StatCard',
     title: 'Stat Card',
+  },
+  {
+    component: ProductCard.Demo,
+    description:
+      'The ProductCard is a wrapper around the Card component that adds a bit more structure to the default layout.',
+    useCases: ['Lists', ''],
+    gif: ProductCard.gif,
+    path: '/ProductCard',
+    title: 'Product Card',
   },
   {
     component: RadioCollapse.Demo,
