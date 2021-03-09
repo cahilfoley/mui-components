@@ -17,7 +17,7 @@ import { ProductCardStatItem } from './ProductCardStatItem'
 
 const ProductCardMedia = styled(CardMedia)`
   height: 200px;
-  background-color: ${({ theme }) => theme?.palette?.background?.default};
+  background-color: ${({ theme }) => theme.palette.background.default};
 `
 
 const TitleLink = styled(Typography).attrs({ variant: 'h5', color: 'textPrimary' })`
